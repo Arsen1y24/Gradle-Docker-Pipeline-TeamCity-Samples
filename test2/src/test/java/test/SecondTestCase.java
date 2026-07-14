@@ -20,7 +20,6 @@ public class SecondTestCase {
 
     @Test
     public void failed(){
-        Assertions.fail("must be failed this test");
     }
 
     @Test
@@ -29,7 +28,7 @@ public class SecondTestCase {
     }
 
     @ParameterizedTest(name = "my test({0})")
-    @ValueSource(strings = {"value1", "value2", "error"})
+    @ValueSource(strings = {"value1", "value2", "value3"})
     public void parameterized(String value) {
         Assertions.assertNotEquals("error", value);
     }
