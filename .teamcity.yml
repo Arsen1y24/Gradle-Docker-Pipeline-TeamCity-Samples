@@ -8,7 +8,6 @@ jobs:
         enable-stacktrace: true
         use-gradle-wrapper: false
         gradle-home: '%env.GRADLE_HOME%'
-        # важный коммент
     dependencies:
       - Job2
       - Job3
@@ -26,6 +25,7 @@ jobs:
         working-directory: test1
         use-gradle-wrapper: 'false'
         gradle-home: '%env.GRADLE_HOME%'
+        disabled: true
       - type: script
         name: Debug Gradle env
         working-directory: test1
