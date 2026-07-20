@@ -7,7 +7,6 @@ jobs:
         tasks: clean build
         enable-stacktrace: true
         use-gradle-wrapper: false
-        gradle-home: '%env.GRADLE_HOME%' # inline
     dependencies:
       - Job2
       - Job3
@@ -24,7 +23,6 @@ jobs:
         tasks: test
         working-directory: test1
         use-gradle-wrapper: 'false'
-        gradle-home: '%env.GRADLE_HOME%'
         disabled: true
       - type: script
         name: Debug Gradle env
