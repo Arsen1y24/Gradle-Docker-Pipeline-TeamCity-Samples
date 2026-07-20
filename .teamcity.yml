@@ -1,6 +1,6 @@
 jobs:
   Job1:
-    name: Job 1 - | nwiovnow
+    name: Job 1 
     steps:
       - type: gradle
         name: Build app
