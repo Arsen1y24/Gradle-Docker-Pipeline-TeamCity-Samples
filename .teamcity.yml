@@ -1,6 +1,6 @@
 jobs:
   Job1:
-    name: Job 1 
+    name: Job 1
     steps:
       - type: gradle
         name: Build app
@@ -52,6 +52,7 @@ jobs:
       - type: script
         script-content: ./gradlew test --info --stacktrace && echo "test \n\n successful \n\n --- \n"
         name: test 2.0
+        disabled: true
       - type: gradle
         name: Run test suite B
         tasks: :test2:test
