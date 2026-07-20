@@ -7,7 +7,7 @@ jobs:
         tasks: clean build
         enable-stacktrace: true
         use-gradle-wrapper: false
-        gradle-home: '%env.GRADLE_HOME%'
+        gradle-home: '%env.GRADLE_HOME%' # inline
     dependencies:
       - Job2
       - Job3
