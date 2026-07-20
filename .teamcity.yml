@@ -1,10 +1,6 @@
 jobs:
   Job1:
-    name: Job 1
-      - | 
-        try another approach to comment
-    
-               # important comment
+    name: Job 1 - | try another approach to comment
     steps:
       - type: gradle
         name: Build app
@@ -12,9 +8,6 @@ jobs:
         enable-stacktrace: true
         use-gradle-wrapper: false
         gradle-home: '%env.GRADLE_HOME%'
-    #important comment_2
-          # important comment_3
-    
     dependencies:
       - Job2
       - Job3
@@ -32,6 +25,7 @@ jobs:
         working-directory: test1
         use-gradle-wrapper: 'false'
         gradle-home: '%env.GRADLE_HOME%'
+        disabled: true
       - type: script
         name: Debug Gradle env
         working-directory: test1
