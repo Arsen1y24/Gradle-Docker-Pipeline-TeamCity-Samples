@@ -1,6 +1,8 @@
 jobs:
   Job1:
-    name: Job 1 - | try another approach to comment
+    name: Job 1 
+    
+     - | try another approach to comment
     steps:
       - type: gradle
         name: Build app
