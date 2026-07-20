@@ -1,0 +1,78 @@
+jobs:
+  Job1:
+    name: Job 1
+    steps:
+      - type: gradle
+        name: Build app
+        tasks: clean build
+        enable-stacktrace: true
+        use-gradle-wrapper: false
+        gradle-home: '%env.GRADLE_HOME%'
+    dependencies:
+      - Job2
+      - Job3
+      - Job3_2
+    enable-dependency-cache: true
+    parallelism: 2
+    parameters:
+      env.JAVA_HOME: '%env.JDK_21_0_x64%'
+  Job2:
+    name: Test suite A
+    steps:
+      - type: gradle
+        name: Run test suite A
+        tasks: test
+        working-directory: test1
+        use-gradle-wrapper: 'false'
+        gradle-home: '%env.GRADLE_HOME%'
+      - type: script
+        name: Debug Gradle env
+        working-directory: test1
+        script-content: |-
+          echo "===== ENV FROM TEAMCITY ====="
+          env | sort
+          echo "===== RUNNING GRADLE FROM TEAMCITY ====="
+          bash ./gradlew --version --info --stacktrace
+    enable-dependency-cache: true
+    parallelism: 3
+    dependencies:
+      - Job2_2
+    parameters:
+      env.JAVA_HOME: '%env.JDK_21_0_x64%'
+  Job3:
+    name: Test suite B
+    steps:
+      - type: script
+        script-content: |-
+          echo "===== ENV FROM TEAMCITY =====+"
+          env | sort
+          echo "===== RUNNING GRADLE FROM TEAMCITY ====="
+          bash ./gradlew --version --info --stacktrace
+        name: Debug Gradle env - B
+        working-directory: test2
+      - type: script
+        script-content: ./gradlew test --info --stacktrace && echo "test \n\n successful \n\n --- \n"
+        name: test 2.0
+      - type: gradle
+        name: Run test suite B
+        tasks: :test2:test
+        enable-stacktrace: true
+    parallelism: 4
+    enable-dependency-cache: true
+    dependencies:
+      - Job2_2
+    parameters:
+      env.JAVA_HOME: '%env.JDK_21_0_x64%'
+  Job2_2:
+    name: Job 2
+    steps:
+      - type: script
+        script-content: echo "Start"
+        name: Job 0
+    allow-reuse: false
+  Job3_2:
+    name: Job 3
+    steps:
+      - type: script
+        script-content: echo "молодец"
+        name: Test suite C
