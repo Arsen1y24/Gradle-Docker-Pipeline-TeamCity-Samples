@@ -1,6 +1,8 @@
 jobs:
   Job1:
     name: Job 1
+      - | 
+        nwiovnow
     steps:
       - type: gradle
         name: Build app
@@ -51,6 +53,7 @@ jobs:
           bash ./gradlew --version --info --stacktrace
         name: Debug Gradle env - B
         working-directory: test2
+        disabled: true
       - type: script
         script-content: ./gradlew test --info --stacktrace && echo "test \n\n successful \n\n --- \n"
         name: test 2.0
