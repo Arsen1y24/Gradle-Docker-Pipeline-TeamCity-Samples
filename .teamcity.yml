@@ -1,7 +1,6 @@
 jobs:
   Job1:
-    name: |-
-      Job 1
+    name: Job 1
     steps:
       - type: gradle
         name: Build app
@@ -35,7 +34,6 @@ jobs:
           env | sort
           echo "===== RUNNING GRADLE FROM TEAMCITY ====="
           bash ./gradlew --version --info --stacktrace
-        disabled: true
     enable-dependency-cache: true
     parallelism: 3
     dependencies:
