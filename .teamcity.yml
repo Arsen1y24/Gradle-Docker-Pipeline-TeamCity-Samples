@@ -43,6 +43,7 @@ jobs:
     name: Test suite B
     steps:
       - type: script
+        gradle-home: '%env.GRADLE_HOME%'
         script-content: |-
           echo "===== ENV FROM TEAMCITY =====+"
           env | sort
@@ -51,6 +52,7 @@ jobs:
         name: Debug Gradle env - B
         working-directory: test2
       - type: script
+        gradle-home: '%env.GRADLE_HOME%'
         script-content: >
           "$GRADLE_HOME/bin/gradle" test --info --stacktrace && echo "test \n\n successful"
         name: test 2.0
@@ -59,11 +61,13 @@ jobs:
         name: Run test suite B
         tasks: :test2:test
         use-gradle-wrapper: 'false'
+        gradle-home: '%env.GRADLE_HOME%'
         enable-stacktrace: true
     parallelism: 4
     enable-dependency-cache: true
     dependencies:
       - Job2_2
+    
   Job2_2:
     name: Job 2
     steps:
