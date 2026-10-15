@@ -1,4 +1,4 @@
-# Gradle & Docker Pipeline (TeamCity Samples) [change smth to make new commit]
+# Gradle & Docker Pipeline (TeamCity Samples) 
 
 This is a sample Java project for TeamCity.
 
